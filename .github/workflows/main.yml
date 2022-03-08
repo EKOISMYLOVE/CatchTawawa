@@ -76,7 +76,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{steps.tweet.outputs.content}}
+          message: ${{steps.parser.outputs.result }}
 
       - name: update tweet
         run: |
