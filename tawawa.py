@@ -11,7 +11,7 @@ api = Api(bearer_token=os.getenv("BEARER_TOKEN"))
 # res = api.get_users(usernames="Strangestone")
 # print(res)
 
-print(OLDTWEET)
+print(os.getenv("OLDTWEET"))
 
 res = api.search_tweets(query="Strangestone")
 #print(type(res))
