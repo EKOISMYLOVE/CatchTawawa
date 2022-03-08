@@ -55,12 +55,6 @@ jobs:
         if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
         run: echo ${{ steps.parser.outputs.result }} 
 
-#      - name: Read tweet content
-#        id: tweet
-#        uses: juliangruber/read-file-action@v1
-#        with:
-#          path: ./tweet
-
       - name: send notice notification
         if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
         uses: appleboy/telegram-action@master
@@ -88,10 +82,17 @@ jobs:
           git push
 
   send:
+    needs: build
     runs-on: ubuntu-latest
-    if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{ steps.oldtweet.outputs.content }}
+    if: needs.check.outputs.status == 'success'
     steps:
       - uses: actions/checkout@v2
+
+      - name: Read tweet content
+        id: tweet
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./tweet
 
       - name: send notice notification
         uses: appleboy/telegram-action@master
@@ -99,6 +100,15 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: 注意
+
+      - name: send tweet content for telegram message
+        if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}} 
+        uses: appleboy/telegram-action@master
+        # These are environments secrets.
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: ${{steps.tweet.outputs.result }}
 
       # Runs a set of commands using the runners shell
       #- name: Run a multi-line script
