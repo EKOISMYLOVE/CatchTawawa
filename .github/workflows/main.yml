@@ -42,7 +42,6 @@ jobs:
 
 #      - name: Run parser
       - uses: actions/setup-python@v2
-        id: parser
         with:
           python-version: '3.7'
           architecture: 'x64'
@@ -51,9 +50,9 @@ jobs:
           pip install python-dotenv
           output=$(python tawawa.py)
           echo "::set-output name=result::$output"
-
+        id: parser
       - name: print result
-        run: echo "${{ steps.parser.outputs.result }}"
+        run: echo ${{ steps.parser.outputs.result }}
 
       - name: Read tweet content
         id: tweet
