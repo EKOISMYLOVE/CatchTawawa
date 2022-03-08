@@ -116,13 +116,6 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: ${{ steps.tweet.outputs.result }}
 
-  buffer:
-    needs: build
-    runs-on: ubuntu-latest
-    if: needs.build.result == 'failure'
-    steps:
-      - name: echo for buffer
-        run: echo ''
 
       # Runs a set of commands using the runners shell
       #- name: Run a multi-line script
