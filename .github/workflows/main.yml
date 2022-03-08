@@ -82,7 +82,7 @@ jobs:
           git config --global user.name "EKOISMYLOVE"
           git add tweet
           git commit -m "Update Tweet."
-          git push origin main -f
+          git push
 
       # Runs a set of commands using the runners shell
       #- name: Run a multi-line script
