@@ -12,7 +12,7 @@ api = Api(bearer_token=os.getenv("BEARER_TOKEN"))
 # print(res)
 
 oldTweet = os.getenv("OLDTWEET")
-print(oldTweet)
+#print(oldTweet)
 
 res = api.search_tweets(query="Strangestone")
 #print(type(res))
