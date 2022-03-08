@@ -53,7 +53,7 @@ jobs:
         id: parser
       - name: print result
         if: ${{ steps.parser.outputs.result }} == null
-        run: echo ${{ steps.parser.outputs.result }}
+        run: echo 123
 
       - name: Read tweet content
         id: tweet
