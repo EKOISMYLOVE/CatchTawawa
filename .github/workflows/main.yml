@@ -93,6 +93,7 @@ jobs:
         uses: juliangruber/read-file-action@v1
         with:
           path: ./tweet
+          
       - name: echo tweet
         run: echo ${{ steps.tweet.outputs.result }}
 
