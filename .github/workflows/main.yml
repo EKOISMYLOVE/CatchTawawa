@@ -62,6 +62,7 @@ jobs:
           path: ./tweet
 
       - name: send notice notification
+        if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO}}
