@@ -38,7 +38,7 @@ jobs:
           BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN}}
         run: |
           echo "BEARER_TOKEN=$BEARER_TOKEN" >> .env
-          echo OLDTWEET=${{steps.tweet.outputs.content}} >> .env
+          echo OLDTWEET=${{steps.oldtweet.outputs.content}} >> .env
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
