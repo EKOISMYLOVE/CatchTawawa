@@ -88,18 +88,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: cat file
-        run: |
-          cat ./tweet
-
-      - name: Read tweet content
+      - name: Read file
         id: tweet
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./tweet
+        run: echo "::set-output name=result::$(cat ./tweet)"
 
-      - name: echo tweet
-        run: echo ${{ steps.tweet.outputs.result }}
+#      - name: Read tweet content
+#        id: tweet
+#        uses: juliangruber/read-file-action@v1
+#        with:
+#          path: ./tweet
+
+#      - name: echo tweet
+#        run: echo ${{ steps.tweet.outputs.result }}
 
       - name: send notice notification
         uses: appleboy/telegram-action@master
