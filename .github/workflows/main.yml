@@ -90,7 +90,9 @@ jobs:
 
       - name: Read file
         id: tweet
-        run: echo "::set-output name=result::$(cat ./tweet)"
+        run: |
+          git pull
+          echo "::set-output name=result::$(cat ./tweet)"
 
 #      - name: Read tweet content
 #        id: tweet
