@@ -33,11 +33,11 @@ jobs:
         run: |
           echo "BEARER_TOKEN=$BEARER_TOKEN" >> .env
 
-      - name: Install python-twitter-v2
-        run: pip install pytwitter
+#      - name: Install python-twitter-v2
+#        run: pip install python-twitter-v2
 
-      - name: Install python-dotenv
-        run: pip install python-dotenv
+#      - name: Install python-dotenv
+#        run: pip install python-dotenv
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -48,7 +48,10 @@ jobs:
         with:
           python-version: '3.7'
           architecture: 'x64'
-      - run : python tawawa.py
+      - run : |
+          pip install python-twitter-v2
+          pip install python-dotenv
+          python tawawa.py
 
       - name: Read tweet content
         id: tweet
