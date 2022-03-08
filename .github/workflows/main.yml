@@ -36,7 +36,9 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Tawawa
+		  format: markdown
+          message: |
+			*Tawawa*
 
       # Runs a set of commands using the runners shell
       #- name: Run a multi-line script
