@@ -33,6 +33,12 @@ jobs:
         run: |
           echo "BEARER_TOKEN=$BEARER_TOKEN" >> .env
 
+      - name: Install python-twitter-v2
+        run: pip install python-twitter-v2
+
+      - name: Install python-dotenv
+        run: pip install python-dotenv
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!!
