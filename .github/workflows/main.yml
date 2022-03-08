@@ -31,8 +31,8 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!!
 
-	  - name: Run parser
-	    run : echo parser
+      - name: Run parser
+        run : echo parser
 
       - name: send telegram message on comment opened
         uses: appleboy/telegram-action@master
