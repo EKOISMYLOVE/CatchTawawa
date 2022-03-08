@@ -17,7 +17,7 @@ oldTweet = os.getenv("OLDTWEET")
 res = api.search_tweets(query="Strangestone")
 #print(type(res))
 for tweet in res.data:
-	if "RT " not in tweet.text and "月曜日のたわわ　その" in tweet.text and oldTweet != tweet.text:
+	if "月曜日のたわわ　その" in tweet.text and oldTweet != tweet.text:
 		print(tweet.text)
 		fp = open("tweet", "w")
 		fp.write(tweet.text)
