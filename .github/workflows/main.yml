@@ -78,6 +78,8 @@ jobs:
 
       - name: update tweet
         run: |
+          git config --global user.email "EKOISMYLOVE@gmail.com"
+          git config --global user.name "EKOISMYLOVE"
           git add tweet
           git commit -m "Update Tweet."
           git push origin main -f
