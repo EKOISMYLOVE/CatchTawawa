@@ -22,8 +22,7 @@ for tweet in res.data:
 		fp = open("tweet", "w")
 		fp.write(tweet.text)
 		fp.close()
-	else:
-		print("No result.")
+
 
 #res = api.get_tweets("1500685768385531911")
 #if "RT " not in str(res.data[0].text) and "月曜日のたわわ　その" in str(res.data[0].text):
