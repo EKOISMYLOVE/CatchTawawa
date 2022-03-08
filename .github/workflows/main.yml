@@ -37,12 +37,12 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!!
 
-      - name: Run parser
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.7'
-          architecture: 'x64'
-        run : python tawawa.py
+#      - name: Run parser
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: '3.7'
+#          architecture: 'x64'
+#        run : python tawawa.py
 
       - name: Read tweet content
         id: tweet
