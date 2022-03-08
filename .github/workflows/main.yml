@@ -88,6 +88,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: cat file
+        run: |
+          cat ./tweet
+
       - name: Read tweet content
         id: tweet
         uses: juliangruber/read-file-action@v1
