@@ -27,17 +27,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Read last week tweet content
+        id: oldtweet
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./tweet
+
       - name: Export Variables
         env:
           BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN}}
         run: |
           echo "BEARER_TOKEN=$BEARER_TOKEN" >> .env
-
-#      - name: Install python-twitter-v2
-#        run: pip install python-twitter-v2
-
-#      - name: Install python-dotenv
-#        run: pip install python-dotenv
+          echo OLDTWEET=${{steps.tweet.outputs.content}} >> .env
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
