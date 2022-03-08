@@ -35,10 +35,10 @@ jobs:
         run : echo parser
 
       - name: Read tweet content
-	    id: tweet
-		uses: juliangruber/read-file-action@v1
-		with:
-		  path: ./tweet
+        id: tweet
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./tweet
 
       - name: send telegram message on comment opened
         uses: appleboy/telegram-action@master
