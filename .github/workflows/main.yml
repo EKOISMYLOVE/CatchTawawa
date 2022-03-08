@@ -34,13 +34,19 @@ jobs:
       - name: Run parser
         run : echo parser
 
+      - name: Read tweet content
+	    id: tweet
+		uses: juliangruber/read-file-action@v1
+		with:
+		  path: ./tweet
+
       - name: send telegram message on comment opened
         uses: appleboy/telegram-action@master
         # These are environments secrets.
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: TAWAWA
+          message: ${{steps.tweet.outputs.content}}
 
       # Runs a set of commands using the runners shell
       #- name: Run a multi-line script
