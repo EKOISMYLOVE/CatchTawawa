@@ -89,7 +89,7 @@ jobs:
 
   send:
     runs-on: ubuntu-latest
-    if: ${{ build.steps.parser.outputs.result }} != null && ${{ build.steps.parser.outputs.result }} != ${{ build.steps.oldtweet.outputs.content }}
+    if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{ steps.oldtweet.outputs.content }}
     steps:
       - uses: actions/checkout@v2
 
