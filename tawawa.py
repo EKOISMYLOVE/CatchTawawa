@@ -20,13 +20,13 @@ for tweet in res.data:
 		fp.write(tweet.text)
 		fp.close()
 
-#res = api.get_tweets("1500685768385531911")
-#if "RT " not in str(res.data[0].text) and "月曜日のたわわ　その" in str(res.data[0].text):
-#	print(res.data[0].text)
-#	print(re.search("(?P<url>https?://[^\s]+)", res.data[0].text).group("url"))
-#	fp = open("tweet", "w")
-#	fp.write(res.data[0].text)
-#	fp.close()
+res = api.get_tweets("1500685768385531911")
+if "RT " not in str(res.data[0].text) and "月曜日のたわわ　その" in str(res.data[0].text):
+	print(res.data[0].text)
+	print(re.search("(?P<url>https?://[^\s]+)", res.data[0].text).group("url"))
+	fp = open("tweet", "w")
+	fp.write(res.data[0].text)
+	fp.close()
 
 
 
