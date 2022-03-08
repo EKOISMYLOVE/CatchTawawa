@@ -68,7 +68,6 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: 注意
-        run: echo 'send notice notification'
 
       - name: send tweet content for telegram message
         if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}} 
@@ -78,7 +77,6 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: ${{steps.parser.outputs.result }}
-        run: echo 'send tawawa message'
 
       - name: update tweet
         if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
