@@ -55,18 +55,18 @@ jobs:
         if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
         run: echo ${{ steps.parser.outputs.result }} 
 
-      - name: Read tweet content
-        id: tweet
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./tweet
+#      - name: Read tweet content
+#        id: tweet
+#        uses: juliangruber/read-file-action@v1
+#        with:
+#          path: ./tweet
 
       - name: send notice notification
         if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
         uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TELEGRAM_TO}}
-          token: ${{ secrets.TELEGRAM_TOKEN}}
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           message: 注意
 
       - name: send tweet content for telegram message
