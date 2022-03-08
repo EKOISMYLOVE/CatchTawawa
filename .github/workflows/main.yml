@@ -52,8 +52,8 @@ jobs:
           echo "::set-output name=result::$output"
         id: parser
       - name: print result
-        if: ${{ steps.parser.outputs.result }} == null
-        run: echo 123
+        if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
+        run: echo ${{ steps.parser.outputs.result }} 
 
       - name: Read tweet content
         id: tweet
