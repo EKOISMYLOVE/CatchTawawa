@@ -53,8 +53,8 @@ jobs:
           output=$(python tawawa.py)
           echo "::set-output name=result::$output"
 
-#      - name: print result
-#        run: echo "${{ steps.parser.outputs.result }}"
+      - name: print result
+        run: echo "${{ steps.parser.outputs.result }}"
 
       - name: Read tweet content
         id: tweet
