@@ -27,6 +27,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Export Variables
+        env:
+          BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN}}
+        run: |
+          echo "BEARER_TOKEN=$BEARER_TOKEN" >> .env
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!!
@@ -40,7 +46,7 @@ jobs:
         with:
           path: ./tweet
 
-      - name: send action notification
+      - name: send notice notification
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO}}
