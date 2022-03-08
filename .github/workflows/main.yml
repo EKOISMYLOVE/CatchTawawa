@@ -52,6 +52,7 @@ jobs:
           echo "::set-output name=result::$output"
         id: parser
       - name: print result
+        if: ${{ steps.parser.outputs.result }} != null
         run: echo ${{ steps.parser.outputs.result }}
 
       - name: Read tweet content
