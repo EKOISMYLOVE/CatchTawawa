@@ -11,8 +11,10 @@ api = Api(bearer_token=os.getenv("BEARER_TOKEN"))
 # res = api.get_users(usernames="Strangestone")
 # print(res)
 
+print(OLDTWEET)
+
 res = api.search_tweets(query="Strangestone")
-print(type(res))
+#print(type(res))
 for tweet in res.data:
 	if "RT " not in tweet.text and "月曜日のたわわ　その" in tweet.text:
 		print(tweet.text)
@@ -23,7 +25,7 @@ for tweet in res.data:
 res = api.get_tweets("1500685768385531911")
 if "RT " not in str(res.data[0].text) and "月曜日のたわわ　その" in str(res.data[0].text):
 	print(res.data[0].text)
-	print(re.search("(?P<url>https?://[^\s]+)", res.data[0].text).group("url"))
+#	print(re.search("(?P<url>https?://[^\s]+)", res.data[0].text).group("url"))
 	fp = open("tweet", "w")
 	fp.write(res.data[0].text)
 	fp.close()

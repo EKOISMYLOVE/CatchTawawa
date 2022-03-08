@@ -53,8 +53,8 @@ jobs:
       - run : |
           pip install python-twitter-v2
           pip install python-dotenv
-#          python tawawa.py
-          output=$(python tawawa.py)
+          python tawawa.py
+#          output=$(python tawawa.py)
 #          echo "::set-output name=result::$output"
 
 #      - name: print result
