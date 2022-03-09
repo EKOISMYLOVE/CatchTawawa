@@ -1,5 +1,7 @@
 # CatchTawawa
-https://img.shields.io/github/license/EKOISMYLOVE/CatchTawawa
+
+<h3><img  src="https://img.shields.io/github/license/EKOISMYLOVE/CatchTawawa"/></h3>
+
 ## Introduction
 This project uses twitter API to catch Strangestone tweet (Tawawa on monday) and then uses telegram bot to send message of tweet for user or group.
 
@@ -11,7 +13,7 @@ Uses cron to schedule for building on Github Action.
 3. Create a twitter developer project and get bearer_token. [Twitter developer Documentation](https://developer.twitter.com/en/docs/platform-overview)
 4. Clone this project.
 5. Set three environment secrets. Please check secrets name and .github/workflows/main.yml parameters, make sure they are same. [Using environments for deployment](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)
-* **TELEGRAM_TO** : Your telegram userid or chatid.
+* **TELEGRAM_TO** : Your telegram userId or chatId.
 * **TELEGRAM_TOKEN** : Your telegram bot token.
 * **TWITTER_BEARER_TOKEN** : Your twitter bearer_token.
 6. Set Github Action and edit .github/workflows/main.yml to test. (cron parameter or option of "on")
