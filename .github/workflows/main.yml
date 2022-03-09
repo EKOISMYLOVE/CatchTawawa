@@ -27,6 +27,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Pull
+        run: |
+          git pull
+
       - name: Read last week tweet content
         id: oldtweet
         uses: juliangruber/read-file-action@v1
