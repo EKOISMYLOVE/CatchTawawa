@@ -1,9 +1,7 @@
 import json
 import requests
 import json
-import re
 import os
-import time
 from dotenv import load_dotenv
 
 # Load env
@@ -80,17 +78,6 @@ def get_stream(set):
 			# print(json.dumps(json_response, indent=4, sort_keys=True))
 			if "RT " not in json_response["data"]["text"] and "月曜日のたわわ　その" in json_response["data"]["text"]:
 				print(json_response["data"]["text"])
-				'''
-				apiurl = 'https://api.telegram.org/bot5205675326:AAHRYduNrmmybdlWYftk64ostssY833RVtQ/'
-				telemethod = "sendMessage"
-				chat_id = chatid
-				content = "注意"
-				urlm = '%s%s?chat_id=%s&text=%s' % (apiurl,telemethod,chat_id,content) #messangeurl
-				r = requests.get(urlm)
-				content = json_response["data"]["text"]
-				urlm = '%s%s?chat_id=%s&text=%s' % (apiurl,telemethod,chat_id,content) #messangeurl
-				r = requests.get(urlm)
-				'''
 				fp = open("tweet", "w")
 				fp.write(json_response["data"]["text"])
 				fp.close()
