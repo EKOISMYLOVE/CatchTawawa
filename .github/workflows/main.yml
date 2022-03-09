@@ -75,6 +75,7 @@ jobs:
       - name: update tweet
         if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
         run: |
+          cat ./tweet
           git config --global user.email "EKOISMYLOVE@gmail.com"
           git config --global user.name "EKOISMYLOVE"
           git add tweet
