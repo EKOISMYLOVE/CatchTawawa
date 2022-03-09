@@ -49,7 +49,7 @@ def delete_all_rules(rules):
 
 def set_rules(delete):
 	sample_rules = [
-    	{"value": "月曜日のたわわ　その from:Strangestone OR from:WeiWeiDev"},
+    	{"value": "月曜日のたわわ　その from:Strangestone"},
 	]
 	payload = {"add": sample_rules}
 	response = requests.post(
@@ -104,44 +104,3 @@ def main():
 
 if __name__ == "__main__":
 	main()
-
-#printer.filter(follow=['993160436001292288', '518677431', '93332575', '1501443423026708481'])
-
-
-'''
-# streaming_client = tweepy.StreamingClient(bearer_token)
-class TweetPrinter(tweepy.StreamingClient):
-
-	def on_tweet(self, tweet):
-		if "RT " not in tweet.text:
-			print(tweet.text)
-			os._exit(0)
-		#if "RT " not in tweet.text and "月曜日のたわわ" in tweet.text and "その" in tweet.text: 
-		#	print(tweet.text)
-		#	os._exit(0)
-
-printer = TweetPrinter(bearer_token)
-#printer.add_rules(tweepy.StreamRule("@strangestone"))
-#printer.add_rules(tweepy.StreamRule("@wiwi571246"))
-#printer.filter()
-#printer.add_rules(tweepy.StreamRule("@WeiWeiDev"))
-printer.filter()
-'''
-
-
-
-'''
-oldTweet = os.getenv("OLDTWEET")
-print(oldTweet)
-
-while(True):
-	res = api.search_tweets(query="Strangestone")
-	for tweet in res.data:
-		if "RT " not in tweet.text and "月曜日のたわわ　その" in tweet.text and oldTweet != tweet.text:
-			print(tweet.text)
-			fp = open("tweet", "w")
-			fp.write(tweet.text)
-			fp.close()
-			os._exit(0)
-		time.sleep(60)
-'''
