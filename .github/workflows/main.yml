@@ -27,22 +27,22 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Pull
-        run: |
-          git pull
+      #- name: Pull
+      #  run: |
+      #    git pull
 
-      - name: Read last week tweet content
-        id: oldtweet
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./tweet
+      #- name: Read last week tweet content
+      #  id: oldtweet
+      #  uses: juliangruber/read-file-action@v1
+      #  with:
+      #    path: ./tweet
 
       - name: Export Variables
         env:
           BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
         run: |
           echo "BEARER_TOKEN=$BEARER_TOKEN" >> .env
-          echo "OLDTWEET=${{steps.oldtweet.outputs.content}}" >> .env
+          echo "CHATID=$TELEGRAM_TO" >> .env
 
 #      - name: Run parser
       - uses: actions/setup-python@v2
@@ -50,78 +50,8 @@ jobs:
           python-version: '3.7'
           architecture: 'x64'
       - run : |
-          pip install python-twitter-v2
           pip install python-dotenv
-          output=$(python tawawa.py)
-          echo "::set-output name=result::$output"
-        id: parser
-      - name: print result
-        if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
-        run: echo ${{ steps.parser.outputs.result }} 
-
-#      - name: send notice notification
-#        if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
-#        uses: appleboy/telegram-action@master
-#        with:
-#          to: ${{ secrets.TELEGRAM_TO }}
-#          token: ${{ secrets.TELEGRAM_TOKEN }}
-#          message: 注意
-
-#      - name: send tweet content for telegram message
-#        if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}} 
-#        uses: appleboy/telegram-action@master
-        # These are environments secrets.
-#        with:
-#          to: ${{ secrets.TELEGRAM_TO }}
-#          token: ${{ secrets.TELEGRAM_TOKEN }}
-#          message: ${{steps.parser.outputs.result }}
-
-      - name: update tweet
-        if: ${{ steps.parser.outputs.result }} != null && ${{ steps.parser.outputs.result }} != ${{steps.oldtweet.outputs.content}}
-        run: |
-          cat ./tweet
-          git config --global user.email "EKOISMYLOVE@gmail.com"
-          git config --global user.name "EKOISMYLOVE"
-          git add tweet
-          git commit -m "Update Tweet."
-          git push -f
-
-  send:
-    needs: build
-    runs-on: ubuntu-latest
-    if: needs.build.result == 'success'
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Read file
-        id: tweet
-        run: |
-          git pull
-          echo "::set-output name=result::$(cat ./tweet)"
-
-#      - name: Read tweet content
-#        id: tweet
-#        uses: juliangruber/read-file-action@v1
-#        with:
-#          path: ./tweet
-
-#      - name: echo tweet
-#        run: echo ${{ steps.tweet.outputs.result }}
-
-      - name: send notice notification
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: 注意
-
-      - name: send tweet content for telegram message
-        uses: appleboy/telegram-action@master
-        # These are environments secrets.
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ steps.tweet.outputs.result }}
+          python tawawa.py
 
 
       # Runs a set of commands using the runners shell
