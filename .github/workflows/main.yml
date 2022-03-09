@@ -27,9 +27,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      #- name: Pull
-      #  run: |
-      #    git pull
+      - name: Pull
+        run: |
+          git pull
 
       #- name: Read last week tweet content
       #  id: oldtweet
@@ -52,11 +52,28 @@ jobs:
       - run : |
           pip install python-dotenv
           pip install requests
-          output=$(python tawawa.py)
-          echo "::set-output name=result::$output"
-        id: parser
-      - name: print result
-        run: echo ${{ steps.parser.outputs.result }} 
+          python tawawa.py
+
+      - name: update tweet
+        run: |
+          cat ./tweet
+          git config --global user.email "EKOISMYLOVE@gmail.com"
+          git config --global user.name "EKOISMYLOVE"
+          git add tweet
+          git commit -m "Update Tweet."
+          git push -f
+
+  send:
+    needs: build
+    runs-on: ubuntu-latest
+    if: needs.build.result == 'success'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Read file
+        id: tweet
+        run: |
+          git pull
+          echo "::set-output name=result::$(cat ./tweet)"
 
       - name: send notice notification
         uses: appleboy/telegram-action@master
@@ -71,7 +88,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{steps.parser.outputs.result }}
+          message: ${{ steps.tweet.outputs.result }}
 
 
       # Runs a set of commands using the runners shell
