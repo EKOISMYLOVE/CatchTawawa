@@ -1,5 +1,5 @@
 # CatchTawawa
-
+https://img.shields.io/github/license/EKOISMYLOVE/CatchTawawa
 ## Introduction
 This project uses twitter API to catch Strangestone tweet (Tawawa on monday) and then uses telegram bot to send message of tweet for user or group.
 
@@ -15,7 +15,7 @@ Uses cron to schedule for building on Github Action.
 * **TELEGRAM_TOKEN** : Your telegram bot token.
 * **TWITTER_BEARER_TOKEN** : Your twitter bearer_token.
 6. Set Github Action and edit .github/workflows/main.yml to test. (cron parameter or option of "on")
-7. (optional) if you want to catch other twitter users' tweet, just edit query in ```api.search_tweets(query="Strangestone")``` and set condition.
+7. (optional) If you want to catch other twitter users' tweet, just edit query in ```api.search_tweets(query="Strangestone")``` and set condition.
 
 
 ## Package
