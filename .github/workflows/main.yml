@@ -51,6 +51,7 @@ jobs:
           architecture: 'x64'
       - run : |
           pip install python-dotenv
+          pip install requests
           python tawawa.py
 
 
