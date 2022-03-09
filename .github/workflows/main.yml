@@ -80,7 +80,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: 注意
+          message: 好色注意
 
       - name: send tweet content for telegram message
         uses: appleboy/telegram-action@master
@@ -88,7 +88,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ steps.tweet.outputs.result }}
+          message: ${{ steps.tweet.outputs.result }} 本週の tawawa
 
 
       # Runs a set of commands using the runners shell
