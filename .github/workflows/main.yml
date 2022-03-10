@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CatchTawawa
 
 # Controls when the workflow will run
 on:
@@ -12,8 +12,6 @@ on:
   #pull_request:
   #  branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  # workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,18 +25,20 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # Check files are newest.
       - name: Pull
         run: |
           git pull
-
-      - name: Export Variables
+      
+      # Export env variable
+      - name: Export Env Variables
         env:
           BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
         run: |
           echo "BEARER_TOKEN=$BEARER_TOKEN" >> .env
           echo "CHATID=$TELEGRAM_TO" >> .env
 
-#      - name: Run parser
+      # Run streamListener
       - uses: actions/setup-python@v2
         with:
           python-version: '3.7'
@@ -47,8 +47,8 @@ jobs:
           pip install python-dotenv
           pip install requests
           python tawawa.py
-
-      - name: update tweet
+      # Update tweet
+      - name: Update tweet
         run: |
           cat ./tweet
           git config --global user.email "EKOISMYLOVE@gmail.com"
@@ -56,19 +56,22 @@ jobs:
           git add tweet
           git commit -m "Update Tweet."
           git push -f
-
+  # If build success, run these jobs.
   send:
     needs: build
     runs-on: ubuntu-latest
     if: needs.build.result == 'success'
     steps:
       - uses: actions/checkout@v2
+
+      # Read tweet 
       - name: Read file
         id: tweet
         run: |
           git pull
           echo "::set-output name=result::$(cat ./tweet)"
 
+      # Send notice notification by telegram bot.
       - name: send notice notification
         uses: appleboy/telegram-action@master
         with:
@@ -76,18 +79,12 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: 好色注意
 
-      - name: send tweet content for telegram message
+      # Send tweet content by telegram bot.
+      - name: send tweet content by telegram bot
         uses: appleboy/telegram-action@master
         # These are environments secrets.
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: ${{ steps.tweet.outputs.result }} 本週の tawawa
-
-
-      # Runs a set of commands using the runners shell
-      #- name: Run a multi-line script
-      #  run: |
-      #    echo Add other actions to build,
-      #    echo test, and deploy your project.
 
