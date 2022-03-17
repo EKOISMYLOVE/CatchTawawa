@@ -13,7 +13,7 @@ Uses cron to schedule for building on Github Actions.
 1. Create a telegram bot. [How to Create telegram bot.](https://core.telegram.org/bots#6-botfather)
 2. Get bot id and user id(chat id). [StackOverflow - Telegram Bot - how to get a group chat id?](https://stackoverflow.com/questions/32423837/telegram-bot-how-to-get-a-group-chat-id)
 3. Create a twitter developer project and get bearer_token. [Twitter developer Documentation](https://developer.twitter.com/en/docs/platform-overview)
-4. Clone this project.
+4. Clone this project and push this project to your repo.
 5. Set three environment secrets. Please check secrets name and .github/workflows/main.yml parameters, make sure they are same. [Using environments for deployment](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)
 * **TELEGRAM_TO** : Your telegram userId or chatId.
 * **TELEGRAM_TOKEN** : Your telegram bot token.
