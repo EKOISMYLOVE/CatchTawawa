@@ -1,4 +1,5 @@
 import json
+from lib2to3.pytree import Base
 import requests
 import json
 import os
@@ -75,13 +76,19 @@ def get_stream(set):
 	for response_line in response.iter_lines():
 		if response_line:
 			json_response = json.loads(response_line)
-			# print(json.dumps(json_response, indent=4, sort_keys=True))
+			#print(json.dumps(json_response, indent=4, sort_keys=True))
 			if "RT " not in json_response["data"]["text"] and "月曜日のたわわ　その" in json_response["data"]["text"]:
-				print(json_response["data"]["text"])
-				fp = open("tweet", "w")
-				fp.write(json_response["data"]["text"])
-				fp.close()
-				os._exit(0)
+				try:
+					print(json_response["data"]["text"])
+					fp = open("tweet", "w")
+					fp.write(json_response["data"]["text"])
+					fp.close()
+					os._exit(0)
+				except BaseException as err:
+					print(json.dumps(json_response, indent=4, sort_keys=True))
+					print("----------")
+					print(err)
+					os._exit(0)
 
 def main():
 	rules = get_rules()
