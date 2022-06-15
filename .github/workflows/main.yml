@@ -83,7 +83,17 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: ${{ steps.tweet.outputs.result }} 本週の tawawa
-
+  sendfail:
+    needs: build
+    runs-on: ubuntu-latest
+    if: needs.build.result == 'failure'
+    steps:
+      - uses: actions/chectout@v2
+      - name: send breakdown message for telegram message
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Dear all,%0A%0AI'm crashed recently,%0AI can't send message about Tawawa.%0AI apologize for any inconvenience caused and thank you for your continuous support. %0A%0AKind regards, %0ATawawaBot
 
       # Runs a set of commands using the runners shell
       #- name: Run a multi-line script
