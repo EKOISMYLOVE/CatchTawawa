@@ -83,13 +83,16 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: ${{ steps.tweet.outputs.result }} 本週の tawawa
+          
   sendfail:
     needs: build
     runs-on: ubuntu-latest
     if: needs.build.result == 'failure'
     steps:
       - uses: actions/chectout@v2
+      
       - name: send breakdown message for telegram message
+        uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
