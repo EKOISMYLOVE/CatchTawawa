@@ -87,7 +87,7 @@ jobs:
   sendfail:
     needs: build
     runs-on: ubuntu-latest
-    if: needs.build.result == 'failure'
+    continue-on-error: true
     steps:
       - uses: actions/chectout@v2
       
