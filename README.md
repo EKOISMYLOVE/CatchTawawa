@@ -22,7 +22,7 @@ Uses cron to schedule for building on Github Actions.
 7. (optional) If you want to catch other twitter users' tweet, just edit parameter ```sample_rules``` and set condition.
 
 ## Package
-These packages I use, **THANKS!!**
+These packages I use and refer, **THANKS!!**
 
 * [MDSK-UltraIN/TawawaBot_forTelegram](https://github.com/MDSK-UltraIN/TawawaBot_forTelegram)
 * [twitterdev/Twitter-API-v2-sample-code](https://github.com/twitterdev/Twitter-API-v2-sample-code)
