@@ -8,6 +8,8 @@ This project uses twitter API to catch @Strangestone tweet (Tawawa on monday) an
 
 Uses cron to schedule for building on Github Actions.
 
+Mandarin introduction : [Link](https://ekoismylove.github.io/posts/application/catchtawawa/)
+
 ## Setup
 
 1. Create a telegram bot. [How to Create telegram bot.](https://core.telegram.org/bots#6-botfather)
