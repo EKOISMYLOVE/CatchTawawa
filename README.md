@@ -21,7 +21,7 @@ Mandarin introduction : [Link](https://ekoismylove.github.io/posts/application/c
 * **TELEGRAM_TOKEN** : Your telegram bot token.
 * **TWITTER_BEARER_TOKEN** : Your twitter bearer_token.
 6. Set Github Action and edit .github/workflows/main.yml to test. (cron parameter or option of "on")
-7. (optional) If you want to catch other twitter users' tweet, just edit parameter ```sample_rules``` and set condition, you can refer my project for DouKiChan(がんばれ同期ちゃん)[Link](https://github.com/EKOISMYLOVE/CatchDouKiChan/blob/main/doukichan.py)
+7. (optional) If you want to catch other twitter users' tweet, just edit parameter ```sample_rules``` and set condition, you can refer my project for DouKiChan(がんばれ同期ちゃん). [Link](https://github.com/EKOISMYLOVE/CatchDouKiChan/blob/main/doukichan.py)
 
 ## Package
 These packages I use and refer, **THANKS!!**
