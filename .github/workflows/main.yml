@@ -74,7 +74,8 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: 好色注意
+          format: html
+          message: <code>好色注意</code>
 
       - name: send tweet content for telegram message
         uses: appleboy/telegram-action@master
