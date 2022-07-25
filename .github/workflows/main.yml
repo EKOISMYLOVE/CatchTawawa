@@ -54,7 +54,7 @@ jobs:
           git config --global user.email "EKOISMYLOVE@gmail.com"
           git config --global user.name "EKOISMYLOVE"
           git add tweet
-          git commit -m `cat ./tweet`
+          git commit -m "`cat ./tweet`"
           git push -f
 
   send:
