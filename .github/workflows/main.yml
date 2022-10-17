@@ -6,7 +6,7 @@ name: Tawawa
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   schedule:
-    - cron: '50 23 * * 0'
+    - cron: '0 0 * * 1'
   # push:
   #  branches: [ master ]
   # pull_request:
