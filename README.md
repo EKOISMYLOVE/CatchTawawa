@@ -4,6 +4,8 @@
 
 ## Introduction
 
+**This project is closed because twitter api doesn't support free access from 2023/02/09.**
+
 This project uses twitter API to catch @Strangestone tweet (Tawawa on monday) and then uses telegram bot to send content of tweet for user or group.
 
 Uses cron to schedule for building on Github Actions.
